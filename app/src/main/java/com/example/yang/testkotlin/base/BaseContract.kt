@@ -10,12 +10,14 @@ interface BaseContract {
     /**
      * 进行双向绑定
      */
-    interface View<out T> {
-        val mPresenter:T
+    interface View<T> {
+        var mPresenter: T?
 
     }
 
-    interface Presenter<out T> {
-        val mView: T
+    interface Presenter<T> {
+        var mView: T?
+        //解除绑定
+        fun onDetach(): Unit
     }
 }

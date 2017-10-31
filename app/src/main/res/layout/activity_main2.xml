@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,13 +10,39 @@
     <TextView
         android:id="@+id/txt_main2"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="50dp"
         android:gravity="center"
         android:text="!@#!@#"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rec_test"
-        android:layout_width="match_parent"
+        android:layout_width="70dp"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+
+    <com.example.yang.testkotlin.widget.CircleAnimView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.example.yang.testkotlin.widget.ExpandView
+        android:id="@+id/expand_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+    </com.example.yang.testkotlin.widget.ExpandView>
+
+    <Button
+        android:id="@+id/btn_to_scroller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="到滑动"/>
+
+    <Button
+        android:id="@+id/btn_to_drag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="到拖动"/>
+</RelativeLayout>

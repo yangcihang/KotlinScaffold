@@ -1,44 +1,38 @@
 package com.example.yang.testkotlin.mvp.view.test.activity
 
+import android.graphics.drawable.AnimationDrawable
 import com.example.yang.testkotlin.R
 import com.example.yang.testkotlin.base.NoBarActivity
 import com.example.yang.testkotlin.mvp.contract.MainContract
 import com.example.yang.testkotlin.mvp.presenter.MainActivityPresenter
-import com.example.yang.testkotlin.network.NetWork
-import com.example.yang.testkotlin.network.RspCallback
-import com.example.yang.testkotlin.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : NoBarActivity(), MainContract.View {
-    override val mPresenter: MainContract.Presenter
-        get() = MainActivityPresenter()
-
+    override var mPresenter: MainContract.Presenter? = MainActivityPresenter(this)
 
     override fun onDataLoadSuccess() {
-        ToastUtil.showToast("231")
+        btn_to_test.text = "123123123123"
     }
 
     override fun loadData() {
-
     }
 
     override fun initView() {
-        println("123")
-        txt_say_hello.setOnClickListener {
-            mPresenter.requestModel()
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        txt_say_hello.apply {
+            setOnClickListener { mPresenter!!.requestModel() }
+            setOnTouchListener { view, motionEvent -> let { return@let false } }
         }
-        btn_to_test.setOnClickListener {
-            NetWork.getService().requestUnstartList("1", "1").enqueue(object : RspCallback<String>() {
-                override fun onSuccess(data: String) {
-                }
-
-                override fun onFailed() {
-                }
-
-            })
+        img_test.apply {
+            setBackgroundResource(R.drawable.test_frame)
+            setOnClickListener {
+                if ((background as AnimationDrawable).isRunning)
+                    (background as AnimationDrawable).stop()
+                else (background as AnimationDrawable).start()
+            }
         }
-
+        btn_to_test.setOnClickListener { mPresenter!!.requestModel() }
     }
 
     override fun initVariable() {
@@ -46,5 +40,11 @@ class MainActivity : NoBarActivity(), MainContract.View {
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
+    }
+
+    override fun onDestroy() {
+        mPresenter?.onDetach()
+        mPresenter = null
+        super.onDestroy()
     }
 }

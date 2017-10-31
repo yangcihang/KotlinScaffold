@@ -60,7 +60,7 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     /**
      * 清空列表
      */
-    fun clear() = {
+    fun clear() {
         this.dataList.clear()
         refreshData()
     }

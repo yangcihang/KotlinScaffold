@@ -25,9 +25,14 @@
         android:text="123123"/>
 
     <Button
-        android:text="233"
         android:id="@+id/btn_to_test"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="233"/>
 
+    <ImageView
+        android:id="@+id/img_test"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/black"/>
 </LinearLayout>
